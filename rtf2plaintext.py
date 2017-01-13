@@ -5,7 +5,7 @@
 @E-mail: rhdqor100@live.co.kr
 """
 
-vtag_list = ['rtf1', 'ansi', 'fcharset', 'generator', 'pard', 'par']
+vtag_list = ['rtf1', 'ansi', 'fcharset', 'generator', 'pard', 'par', 'fldinstHYPERLINK', 'pict', 'picw', 'pich']
 
 def bracket(input):
     # Brace removal function
@@ -78,36 +78,37 @@ def tag_plain_list(tag_list, input):
         if Valuable_tags(tag):  # 필요한 태그인가?
             if is_tag(tag_data_offset, input) == "tag": # 정보가 있는 태그인가?
                 # 태그에서 숫자 값을 추출
-                print "[debug:info_teg]"
-                pass
+                print "[debug:info_tag:%s]" % (tag), input[tag_offset:next_tag_offset]
+
             elif is_tag(tag_data_offset, input) == "data": # 데이터 앞에 붙는 태그인가?
                 # 다음 태그까지 데이터 읽어서 추출
-                #raw_data.append(input[tag_data_offset:next_tag_offset])
-                #yield raw_data
-                print input[tag_data_offset:next_tag_offset]
+                if ('picw' in tag) or ('pich' in tag):
+                    print "[debug:photo_tag:%s]" % tag, input[tag_offset+4:tag_data_offset]
+                print "[debug:data_tag:%s]" % tag, input[tag_data_offset:next_tag_offset-1]
         else:
+            # 현재 유니코드를 not valuable 한 태그라고 인식함!
+            print "[debug:not valuable tag:%s]" % tag
             continue
 
 def Valuable_tags(tag):
-    #vtag_list = ['rtf1', 'ansi', 'fcharset', 'pard', 'par']
-    if tag in vtag_list:
-        return True
-    else:
-        return False
+    for vt in vtag_list:
+        if vt in tag:
+            return True
+    return False
 
 def is_tag(tag_data_offset, input):
     # 유니코드 오탐의 위험이 있음!
     check_target = input[tag_data_offset+1]
-    debug_target = input[tag_data_offset+1:tag_data_offset+10]
+    debug_target = input[tag_data_offset+1:tag_data_offset+20]
     try:
         if check_target == '\\':
             return "tag"
         elif check_target.isalnum():
             return "data"
-        elif check_target == ' ':
+        elif check_target == (' ' or '*' or '@'):
             is_tag(tag_data_offset+1, input)
         else:
-            print "[err:istag] |%s|%s|" % (check_target, debug_target)
+            print "[err:istag][%s|%s]" % (check_target, debug_target)
     except AttributeError as e:
         print "[err]", e, "[data_off]", check_target, "data", debug_target
 

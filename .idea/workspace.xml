@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20c25cc8-678d-4337-b169-a9623c07be40" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rtf2plaintext.py" afterPath="$PROJECT_DIR$/rtf2plaintext.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,16 +20,13 @@
       <file leaf-file-name="rtf2plaintext.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rtf2plaintext.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="472">
+              <caret line="107" column="46" lean-forward="false" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
               <folding>
-                <element signature="e#186#1152#0" expanded="false" />
-                <element signature="e#1188#1998#0" expanded="false" />
-                <element signature="e#2041#2631#0" expanded="false" />
-                <element signature="e#2661#2793#0" expanded="false" />
-                <element signature="e#2835#3361#0" expanded="false" />
-                <element signature="e#3400#3720#0" expanded="false" />
-                <element signature="e#3752#4276#1" expanded="false" />
+                <element signature="e#230#1196#0" expanded="false" />
+                <element signature="e#1232#2042#0" expanded="false" />
+                <element signature="e#3611#3931#0" expanded="false" />
+                <element signature="e#3963#4487#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -313,7 +309,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="73" />
+      <option name="time" value="75" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -323,13 +319,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#186#1152#0" expanded="false" />
-            <element signature="e#1188#1998#0" expanded="false" />
-            <element signature="e#2041#2631#0" expanded="false" />
-            <element signature="e#2661#2793#0" expanded="false" />
-            <element signature="e#2835#3361#0" expanded="false" />
-            <element signature="e#3400#3720#0" expanded="false" />
-            <element signature="e#3752#4276#1" expanded="false" />
+            <element signature="e#230#1196#0" expanded="false" />
+            <element signature="e#1232#2042#0" expanded="false" />
+            <element signature="e#3611#3931#0" expanded="false" />
+            <element signature="e#3963#4487#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -339,13 +332,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#186#1152#0" expanded="false" />
-            <element signature="e#1188#1998#0" expanded="false" />
-            <element signature="e#2041#2631#0" expanded="false" />
-            <element signature="e#2661#2793#0" expanded="false" />
-            <element signature="e#2835#3361#0" expanded="false" />
-            <element signature="e#3400#3720#0" expanded="false" />
-            <element signature="e#3752#4276#1" expanded="false" />
+            <element signature="e#230#1196#0" expanded="false" />
+            <element signature="e#1232#2042#0" expanded="false" />
+            <element signature="e#3611#3931#0" expanded="false" />
+            <element signature="e#3963#4487#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -359,16 +349,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rtf2plaintext.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="472">
+          <caret line="107" column="46" lean-forward="false" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
           <folding>
-            <element signature="e#186#1152#0" expanded="false" />
-            <element signature="e#1188#1998#0" expanded="false" />
-            <element signature="e#2041#2631#0" expanded="false" />
-            <element signature="e#2661#2793#0" expanded="false" />
-            <element signature="e#2835#3361#0" expanded="false" />
-            <element signature="e#3400#3720#0" expanded="false" />
-            <element signature="e#3752#4276#1" expanded="false" />
+            <element signature="e#230#1196#0" expanded="false" />
+            <element signature="e#1232#2042#0" expanded="false" />
+            <element signature="e#3611#3931#0" expanded="false" />
+            <element signature="e#3963#4487#1" expanded="false" />
           </folding>
         </state>
       </provider>
