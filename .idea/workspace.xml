@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20c25cc8-678d-4337-b169-a9623c07be40" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rtf2plaintext.py" afterPath="$PROJECT_DIR$/rtf2plaintext.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +20,11 @@
       <file leaf-file-name="rtf2plaintext.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rtf2plaintext.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+            <state relative-caret-position="368">
+              <caret line="68" column="24" lean-forward="false" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
               <folding>
-                <element signature="e#92#629#0" expanded="false" />
-                <element signature="e#665#1375#0" expanded="false" />
+                <element signature="e#115#652#0" expanded="false" />
+                <element signature="e#688#1498#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -270,7 +269,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.08324552" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -304,7 +303,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="57" />
+      <option name="time" value="58" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -314,8 +313,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#92#629#0" expanded="false" />
-            <element signature="e#665#1375#0" expanded="false" />
+            <element signature="e#115#652#0" expanded="false" />
+            <element signature="e#688#1498#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -329,11 +328,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rtf2plaintext.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        <state relative-caret-position="368">
+          <caret line="68" column="24" lean-forward="false" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
           <folding>
-            <element signature="e#92#629#0" expanded="false" />
-            <element signature="e#665#1375#0" expanded="false" />
+            <element signature="e#115#652#0" expanded="false" />
+            <element signature="e#688#1498#0" expanded="false" />
           </folding>
         </state>
       </provider>

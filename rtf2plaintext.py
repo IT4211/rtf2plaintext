@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 """
 @Author: SeonHo Lee (IT4211)
 @E-mail: rhdqor100@live.co.kr
@@ -33,11 +34,13 @@ def generator_taglist(input):
 
     for _ch in input:
         if len(stack) == 0 and _ch == '\\':
+            seek += 1
             stack.append('S')
             #print "[debug:stack:push]", stack
             chunk = ""
 
         elif len(stack) == 0 and (_ch != '\\'):
+            seek += 1
             continue
 
         elif stack[-1] == 'S' and _ch.isalnum():
@@ -46,12 +49,14 @@ def generator_taglist(input):
             seek += 1
 
         elif stack[-1] == 'S' and _ch == '\\':
+            seek += 1
             #print "[debug:stack:nop]", stack
-            yield chunk
+            yield chunk, seek
             chunk = ""
 
         elif stack[-1] == 'S' and not _ch.isalnum():
-            yield chunk
+            seek += 1
+            yield chunk, seek
             stack.pop()
             #print "[debug:stack:pop]", stack
 
@@ -62,10 +67,9 @@ if __name__=="__main__":
     plaintf = open('rtf2pt.txt', 'w')
     for tag_chunk in bracket(richtf):
         tmp += tag_chunk
-        tmp = tmp.replace("\\rtlch", "\n\\rtlch")
 
-    for i in generator_taglist(tmp):
-        if i != "":
-            tag_list.append(i)
-            print i
+    for tag, seek in generator_taglist(tmp):
+        tag_offset = seek - len(tag) - 1
+        tag_data_offset = tag_offset + len(tag) #해당 태그 바로 뒤의 위치
+        print "[TEST]", tag, tmp[tag_offset:tag_data_offset]
 
