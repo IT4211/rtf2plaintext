@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+
 """
 @Author: SeonHo Lee (IT4211)
 @E-mail: rhdqor100@live.co.kr
@@ -60,7 +61,15 @@ def generator_taglist(input):
             stack.pop()
             #print "[debug:stack:pop]", stack
 
+def find_tag_chain(input, tag_list):
+    pass
+
+def rtf_parser(input):
+    i = input.readlines()
+    print i[1]
+    print i[2]
 if __name__=="__main__":
+    """
     tmp = str()
     tag_list = list()
     richtf = open('test.rtf', 'r')
@@ -71,5 +80,12 @@ if __name__=="__main__":
     for tag, seek in generator_taglist(tmp):
         tag_offset = seek - len(tag) - 1
         tag_data_offset = tag_offset + len(tag) #해당 태그 바로 뒤의 위치
-        print "[TEST]", tag, tmp[tag_offset:tag_data_offset]
+        tag_set = [tag, tag_offset, tag_data_offset]
+        #print "[TEST]", tag, tmp[tag_offset:tag_data_offset]
+        tag_list.append(tag_set)
 
+    for i in tag_list:
+        print i
+    """
+    f = open("test2.rtf", "r")
+    rtf_parser(f)
