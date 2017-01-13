@@ -5,7 +5,10 @@
 @E-mail: rhdqor100@live.co.kr
 """
 
-vtag_list = ['rtf1', 'ansi', 'fcharset', 'generator', 'pard', 'par', 'fldinstHYPERLINK', 'pict', 'picw', 'pich']
+vtag_list = ['rtf1', 'ansi', 'fcharset',
+             'pard', 'par',
+             'fldinstHYPERLINK', 'lang',
+             'pict', 'picw', 'pich']
 
 def bracket(input):
     # Brace removal function
@@ -38,7 +41,7 @@ def bracket(input):
                     yield chunk
 
         except IndexError as e:
-            print "[error]", e, "[_ch] ", _ch, "[stack] ", stack
+            print "[err]", e, "[_ch] ", _ch, "[stack] ", stack
 
 def generator_taglist(input):
     seek = 0
@@ -77,18 +80,35 @@ def tag_plain_list(tag_list, input):
     for tag, tag_offset, tag_data_offset, next_tag_offset in tag_list:
         if Valuable_tags(tag):  # 필요한 태그인가?
             if is_tag(tag_data_offset, input) == "tag": # 정보가 있는 태그인가?
-                # 태그에서 숫자 값을 추출
-                print "[debug:info_tag:%s]" % (tag), input[tag_offset:next_tag_offset]
+                # 태그에서 숫자 값을 추 출 : 인코딩 정보 등 ...
+                #print "[debug:info_tag:%s]" % (tag), input[tag_offset:next_tag_offset]
+                pass
 
             elif is_tag(tag_data_offset, input) == "data": # 데이터 앞에 붙는 태그인가?
                 # 다음 태그까지 데이터 읽어서 추출
-                if ('picw' in tag) or ('pich' in tag):
-                    print "[debug:photo_tag:%s]" % tag, input[tag_offset+4:tag_data_offset]
-                print "[debug:data_tag:%s]" % tag, input[tag_data_offset:next_tag_offset-1]
+                pict_of = is_pictag(tag, tag_offset)
+                #print "[debug:pict_of]", pict_of
+                if pict_of:
+                    print "[debug:photo_tag:%s]" % tag, input[pict_of:tag_data_offset]
+                    #print "[debug:photo_data]", input[tag_data_offset:next_tag_offset]
+                else:
+                    print tag, input[tag_data_offset:next_tag_offset-1]
         else:
             # 현재 유니코드를 not valuable 한 태그라고 인식함!
-            print "[debug:not valuable tag:%s]" % tag
+            #print "[debug:not valuable tag:%s]" % tag
             continue
+
+def is_pictag(tag, tag_offset):
+    if 'picw' in tag:
+        return tag_offset + 4
+    elif 'pich' in tag:
+        return tag_offset + 4
+    elif 'picwg' in tag:
+        return tag_offset + 8
+    elif 'pichg' in tag:
+        return tag_offset + 8
+    else:
+        False
 
 def Valuable_tags(tag):
     for vt in vtag_list:
@@ -98,6 +118,8 @@ def Valuable_tags(tag):
 
 def is_tag(tag_data_offset, input):
     # 유니코드 오탐의 위험이 있음!
+    if input[tag_data_offset] == None:
+        return
     check_target = input[tag_data_offset+1]
     debug_target = input[tag_data_offset+1:tag_data_offset+20]
     try:
@@ -110,7 +132,7 @@ def is_tag(tag_data_offset, input):
         else:
             print "[err:istag][%s|%s]" % (check_target, debug_target)
     except AttributeError as e:
-        print "[err]", e, "[data_off]", check_target, "data", debug_target
+        print "[err]", e, "[data_off]", check_target, "[data]", debug_target
 
 def tag_list_handling(tag_list):
     offset_list = []
@@ -128,24 +150,6 @@ def tag_list_handling(tag_list):
 
 
 if __name__=="__main__":
-    """
-    tmp = str()
-    tag_list = list()
-    richtf = open('test.rtf', 'r')
-    plaintf = open('rtf2pt.txt', 'w')
-    for tag_chunk in bracket(richtf):
-        tmp += tag_chunk
-
-    for tag, seek in generator_taglist(tmp):
-        tag_offset = seek - len(tag) - 1
-        tag_data_offset = tag_offset + len(tag) #해당 태그 바로 뒤의 위치
-        tag_set = [tag, tag_offset, tag_data_offset]
-        #print "[TEST]", tag, tmp[tag_offset:tag_data_offset]
-        tag_list.append(tag_set)
-
-    for i in tag_list:
-        print i
-    """
     tmp = str()
     tag_list = list()
     richtf = open("test2.rtf", "r")
