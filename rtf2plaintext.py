@@ -26,53 +26,46 @@ def bracket(input):
             if len(stack) == 0:
                 yield chunk
 
-
-def parse_plaintext(input):
-    chk_pt_tag = ['sectd', 'pard', 'plain', 'rtlch']
+def generator_taglist(input):
     seek = 0
     stack = list()
     chunk = str()
-    pt_offset = str()
 
     for _ch in input:
         if len(stack) == 0 and _ch == '\\':
             stack.append('S')
+            #print "[debug:stack:push]", stack
+            chunk = ""
 
-        elif stack[-1] == 'S' and _ch.isalpha():
+        elif len(stack) == 0 and (_ch != '\\'):
+            continue
+
+        elif stack[-1] == 'S' and _ch.isalnum():
             chunk += _ch
+            #print "[debug:chunk]", chunk
             seek += 1
 
-        elif stack[-1] == 'S' and (_ch == '\\' or not _ch.isalpha()):
+        elif stack[-1] == 'S' and _ch == '\\':
+            #print "[debug:stack:nop]", stack
+            yield chunk
+            chunk = ""
+
+        elif stack[-1] == 'S' and not _ch.isalnum():
+            yield chunk
             stack.pop()
-            if len(stack) == 0:
-                if chk_pt_tag[0] in chunk:
-                    continue
-                elif chk_pt_tag[1] in chunk:
-                    continue
-                elif chk_pt_tag[2] in chunk:
-                    continue
-                elif chk_pt_tag[3] in chunk:
-                    pt_offset = input[seek:]
-                    break
-
-    for _ch in pt_offset:
-        print "[d]", _ch
-
-
-
-
-
-
+            #print "[debug:stack:pop]", stack
 
 if __name__=="__main__":
     tmp = str()
+    tag_list = list()
     richtf = open('test.rtf', 'r')
     plaintf = open('rtf2pt.txt', 'w')
     for tag_chunk in bracket(richtf):
         tmp += tag_chunk
         tmp = tmp.replace("\\rtlch", "\n\\rtlch")
-       #plaintf.write(tmp)
-        parse_plaintext(tmp)
 
+    for i in generator_taglist(tmp):
+        if i != "":
+            tag_list.append(i)
+            print i
 
-    #print file_meta_tag(tmp)
