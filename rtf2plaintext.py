@@ -102,9 +102,8 @@ def tag_plain_list(tag_list, input):
     width = str()
     for tag, tag_offset, tag_data_offset, next_tag_offset in tag_list:
         if Valuable_tags(tag):  # 필요한 태그인가?
-            if is_tag(tag_data_offset, input) == "tag": # 정보가 있는 태그인가?
-                # 태그에서 숫자 값을 추 출 : 인코딩 정보 등 ...
-                #print "[debug:info_tag:%s]" % (tag), input[tag_offset:next_tag_offset]
+            if is_tag(tag_data_offset, input) == "tag":
+                #정보가 있는 태그
                 pass
 
             elif is_tag(tag_data_offset, input) == "data": # 데이터 앞에 붙는 태그인가?
@@ -115,7 +114,6 @@ def tag_plain_list(tag_list, input):
                         width = input[pict_of:tag_data_offset]
                     elif w == 'h':
                         yield "( %s x %s image)" %(width, input[pict_of:tag_data_offset])
-                    #print "[debug:photo_tag:%s]" % tag, input[pict_of:tag_data_offset]
                 else:
                     plain_data = input[tag_data_offset:next_tag_offset - 1]
                     if plain_data.startswith('\\'):
@@ -124,7 +122,6 @@ def tag_plain_list(tag_list, input):
                     else:
                         yield plain_data
         else:
-            #print "[debug:not valuable tag:%s]" % tag
             continue
 
 def is_pictag(tag, tag_offset):
@@ -155,10 +152,8 @@ def is_tag(tag_data_offset, input):
             return "tag"
         elif check_target.isalnum():
             return "data"
-        elif check_target == (' ' or '*' or '@'):
-            is_tag(tag_data_offset+1, input)
         else:
-            print "[err:istag][%s|%s]" % (check_target, debug_target)
+            print "[unknown][%s|%s]" % (check_target, debug_target)
     except AttributeError as e:
         print "[err]", e, "[data_off]", check_target, "[data]", debug_target
 
@@ -185,13 +180,14 @@ if __name__=="__main__":
     for tag_chunk in bracket(richtf):
         tmp += tag_chunk
 
+    tmp = tmp.replace('\\pard', '\\par ')
     tmp = tmp.replace('\\par', '\\par ')
+
 
     for tag, seek, in generator_taglist(tmp):
         tag_offset = seek - len(tag) - 1
         tag_data_offset = tag_offset + len(tag) #해당 태그 바로 뒤의 위치
         tag_set = [tag, tag_offset, tag_data_offset]
-        #print "[TEST]", tag, tmp[tag_offset:tag_data_offset]
         tag_list.append(tag_set)
 
     tag_list = tag_list_handling(tag_list)
