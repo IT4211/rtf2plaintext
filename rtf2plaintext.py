@@ -64,6 +64,18 @@ def generator_taglist(input):
             #print "[debug:chunk]", chunk
             seek += 1
 
+        elif stack[-1] == 'U' and _ch.isalnum():
+            seek +=1
+
+        elif stack[-1] == 'U' and not _ch.isalnum():
+            seek +=1
+            stack.pop()
+
+        elif stack[-1] == 'U' and _ch == '\\':
+            stack.pop()
+            stack.append('S')
+            seek += 1
+
         elif stack[-1] == 'S' and _ch == '\\':
             seek += 1
             #print "[debug:stack:nop]", stack
@@ -71,6 +83,12 @@ def generator_taglist(input):
             chunk = ""
 
         elif stack[-1] == 'S' and not _ch.isalnum():
+            if _ch == '\'': # unicode data?
+                stack.pop()
+                stack.append('U') # state change
+                chunk = ""
+                seek += 1
+                continue
             seek += 1
             yield chunk, seek
             stack.pop()
@@ -120,8 +138,8 @@ def is_tag(tag_data_offset, input):
     # 유니코드 오탐의 위험이 있음!
     if input[tag_data_offset] == None:
         return
-    check_target = input[tag_data_offset+1]
-    debug_target = input[tag_data_offset+1:tag_data_offset+20]
+    check_target = input[tag_data_offset-1]
+    debug_target = input[tag_data_offset-1:tag_data_offset+20]
     try:
         if check_target == '\\':
             return "tag"
@@ -155,7 +173,6 @@ if __name__=="__main__":
     richtf = open("test2.rtf", "r")
     for tag_chunk in bracket(richtf):
         tmp += tag_chunk
-        #tmp += tag_chunk
 
     tmp = tmp.replace('\\par', '\\par ')
 
@@ -168,8 +185,8 @@ if __name__=="__main__":
 
     tag_list = tag_list_handling(tag_list)
 
-    #for i in tag_list:
-    #    print i
+    for i in tag_list:
+        print i
 
     tag_plain_list(tag_list, tmp)
     #for i in tag_plain_list(tag_list, tmp):
